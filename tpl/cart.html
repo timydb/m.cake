@@ -1,0 +1,37 @@
+<ion-header-bar class="bg-coffee">
+    <h1 class="title light">Yummy</h1>
+    <button class="button button-clear button-light" ng-click="toggleEdit()">{{edit.right}}</button>
+</ion-header-bar>
+<ion-content class="has-header has-footer">
+    <ion-list>
+        <h2 class="text-center orange">我的购物车</h2>
+        <div class="row" ng-repeat="tmp in data track by $index">
+            <ion-checkbox class="col-20"  ng-model="total[$index]" ng-change="isChange()"></ion-checkbox>
+            <div class=" item item-thumbnail-left col-80 cart_row" ng-click="goSingle(tmp.pid)" on-hold="del($index)" >
+                <img ng-src="images/{{tmp.img_l}}" alt="" ui-sref="single({pid:tmp.pid})"/>
+                <div ng-show="canEdit" ui-sref="single({pid:tmp.pid})">
+                    <h2 class="coffee">{{tmp.pname}}</h2>
+                    <p><span class="orange">规格：</span>{{tmp.weight}}磅</p>
+                    <p><span class="orange">单价：</span>{{tmp.price}}/磅</p>
+                    <p><span class="orange">数量：</span>{{tmp.count}}</p>
+                </div>
+                <div ng-show="!canEdit" class="edit">
+                    <button class="button button-small button-coffee button-outline" ng-click="add($index,-2,tmp.pid,tmp.weight)">-</button>
+                    <span>{{tmp.count}}</span>
+                    <button class="button button-small button-coffee button-outline" ng-click="add($index,-1,tmp.pid,tmp.weight)">+</button>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="item">
+            <div class="row row-center">
+                <p class="col-67"><span class="coffee">总计：</span>{{totalprice|currency:'￥'}}</p>
+                <button class="button button-orange col-33" ng-click="toOrder()">去结算</button>
+            </div>
+
+        </div>
+    </ion-list>
+
+</ion-content>

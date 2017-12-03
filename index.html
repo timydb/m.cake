@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="css/ionic.css"/>
+    <link rel="stylesheet" href="css/yummy.css"/>
+    <script src="js/ionic.bundle.js"></script>
+    <title></title>
+</head>
+<body ng-controller="rootCtrl">
+
+    <div ui-view></div>
+    <ion-tabs class="tabs-icon-top ">
+        <ion-tab class="bg-coffee light" icon="ion-home" title="首页" on-select="jump('main')"></ion-tab>
+        <ion-tab class="bg-coffee light" icon="ion-bag" title="购物车" on-select="jump('cart')" badge="cart.sum" badge-style="badge-assertive"></ion-tab>
+        <ion-tab class="bg-coffee light" icon="ion-log-out" title="退出登录" on-select="" ng-if="quit.quit" ng-click="logout()"></ion-tab>
+        <ion-tab class="bg-coffee light" icon="ion-log-in" title="登录" on-select="jump('register')" ng-if="!quit.quit"></ion-tab>
+        <ion-tab class="bg-coffee light" icon="ion-android-list" title="我的订单" on-select="jump('myorder')"></ion-tab>
+    </ion-tabs>
+
+<script src="js/yummy.js"></script>
+</body>
+</html>

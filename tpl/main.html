@@ -1,0 +1,39 @@
+<div ng-include="'tpl/header.html'"></div>
+<ion-content class="has-header has-footer">
+    <div class="list banner_box" xmlns="http://www.w3.org/1999/html">
+        <a class="item item-thumbnail-right banner" ui-sref="product">
+            <img src="images/2.png" alt="" class="banner_img">
+            <h1 class="banner_h">Yummy <span>Cakes</span> for U</h1>
+            <p>SHOP NOW</p>
+        </a>
+    </div>
+    <div class="list">
+        <div class="item pro_list">
+            <div class="row" ng-repeat="tmp in data">
+                <div class="col">
+                    <div class="pro_item card">
+                        <a ui-sref="single({pid:tmp.pid})">
+                            <div class="item item-image index-img">
+                                <img ng-src="images/{{tmp.img_l}}" alt="">
+                            </div>
+                            <div class="item">
+                                <div class="pro_info">
+                                    <h2>{{tmp.pname}}</h2>
+                                    <h3 class="price assertive">{{tmp.price|currency:'￥'}}/磅</h3>
+                                </div>
+                                <div class="rating sc${data[i].rating}" >
+                                    <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating>=1]"></span>
+                                    <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating>=2]"></span>
+                                    <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating>=3]"></span>
+                                    <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating>=4]"></span>
+                                    <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating==5]"></span>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

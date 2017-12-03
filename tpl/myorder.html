@@ -1,0 +1,42 @@
+
+<div ng-include="'tpl/header.html'"></div>
+
+<ion-content class="has-header has-footer">
+
+    <h2 class="text-center orange">我的订单</h2>
+
+    <!-- 通过grid中的row和col来去模拟table中的行和列-->
+    <div class="row text-center">
+        <div class="col col-20">
+            编号
+        </div>
+        <div class="col">
+            商品名称
+        </div>
+        <div class="col">
+            下单时间
+        </div>
+        <div class="col">
+            联系人
+        </div>
+    </div>
+    <div class="row row-center text-center" ng-repeat="order in orderList">
+        <div class="col col-20">
+            {{order.oid}}
+        </div>
+        <div class="col">
+            <a href="#/single/{{order.pid}}">
+                <img class="order" ng-src="images/{{order.img_l}}" alt=""/>
+            </a>
+        </div>
+        <div class="col">
+            {{order.order_time | date:'yy-MM-dd'}}
+        </div>
+        <div class="col">
+            {{order.uname}}
+        </div>
+
+    </div>
+
+
+</ion-content>

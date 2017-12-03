@@ -1,0 +1,55 @@
+<div ng-include="'tpl/header.html'"></div>
+<ion-content class="has-header has-footer">
+    <div class="list list-inset" ng-show="isLogin">
+        <h2 class="orange text-center">登录</h2>
+        <span class="assertive">{{err}}</span>
+        <label class="item item-input">
+            <span class="input-label">用户名</span>
+            <i class="icon ion-person placeholder-icon"></i>
+            <input type="text" placeholder="请输入用户名" ng-model="login.uname">
+        </label>
+        <label class="item item-input">
+            <span class="input-label">密码</span>
+            <i class="icon ion-locked placeholder-icon"></i>
+            <input type="password" placeholder="请输入密码" ng-model="login.password">
+        </label>
+        <div class="button-bar padding-vertical">
+            <button class="button button-orange" ng-click="toLog()">注册</button>
+            <button class="button button-orange button-outline" ng-click="goLogin()">登录</button>
+        </div>
+    </div>
+    <div class="list list-inset" ng-show="!isLogin">
+        <form  name="reg"  novalidate >
+            <h2 class="orange text-center">注册</h2>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">用户名</span>
+                <span ng-show="reg.uname.$invalid && reg.uname.$dirty">3-12位数字字母组合</span>
+                <span class="assertive">{{msg1}}</span>
+                <input type="text" placeholder="请输入用户名" name="uname" required ng-model="user.user_name" ng-maxlength="12" ng-minlength="3" ng-pattern="/^[0-9A-Za-z]*$/" ng-blur="check('user_name')">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">密码</span>
+                <span ng-show="reg.pwd.$invalid && reg.pwd.$dirty">6-10位数字密码组合</span>
+                <input type="password" placeholder="请输入密码" name="pwd" required ng-model="user.pwd" ng-maxlength="10" ng-minlength="6" ng-pattern="/^[0-9A-Za-z]*$/">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">密码</span>
+                <span ng-show="user.upwd!=user.pwd && reg.conpwd.$dirty">密码不一致</span>
+                <input type="password" placeholder="再次输入密码" name="conpwd" ng-model="user.upwd" required  ng-maxlength="10" ng-minlength="6">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">手机号</span>
+                <span ng-show="reg.phone.$invalid && reg.phone.$dirty">请输入正确的手机号</span>
+                <span class="assertive">{{msg2}}</span>
+                <input type="tel" placeholder="请输入手机号码" name="phone" ng-model="user.phone" required ng-pattern="/^1[34578]\d{9}$/" ng-blur="check('phone')">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Email</span>
+                <span ng-show="reg.email.$invalid && reg.email.$dirty">请输入正确的Email</span>
+                <span class="assertive">{{msg3}}</span>
+                <input type="email" placeholder="请输入E-mail" name="email" required ng-model="user.email" ng-pattern="/^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)?@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/" ng-blur="check('email')">
+            </label>
+            <button class="button button-orange button-block" ng-disabled="reg.$invalid" ng-click="sub()">注册</button>
+        </form>
+    </div>
+</ion-content>

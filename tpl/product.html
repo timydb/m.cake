@@ -1,0 +1,69 @@
+<ion-side-menus>
+    <ion-side-menu-content>
+        <ion-header-bar class="bg-coffee">
+
+            <h1 class="title light">Yummy</h1>
+            <button class="button button-clear button-light" ng-click="open()">筛选</button>
+        </ion-header-bar>
+        <ion-content class="has-header has-footer">
+            <h1 class="orange text-center">所有商品</h1>
+            <div class="list">
+                <div class="item pro_list">
+                    <div class="row" ng-repeat="tmp in data" ng-if="$index%2==0">
+                        <div class="col-50">
+                            <div class="pro_item card">
+                                <a ui-sref="single({pid:tmp.pid})">
+                                    <div class="item item-image pro-img">
+                                        <img ng-src="images/{{tmp.img_l}}" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <h2>{{tmp.pname}}</h2>
+                                        <h3 class="price assertive">{{tmp.price|currency:'￥'}}/磅</h3>
+                                        <div class="rating sc${data[i].rating}" >
+                                            <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating>=1]"></span>
+                                            <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating>=2]"></span>
+                                            <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating>=3]"></span>
+                                            <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating>=4]"></span>
+                                            <span ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[tmp.rating==5]"></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-50" ng-if="$index<data.length-1">
+                            <div class="pro_item card">
+                                <a ui-sref="single({pid:data[$index+1].pid})">
+                                    <div class="item item-image pro-img">
+                                        <img ng-src="images/{{data[$index+1].img_l}}" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <h2>{{data[$index+1].pname}}</h2>
+                                        <h3 class="price assertive">{{data[$index+1].price|currency:'￥'}}/磅</h3>
+                                        <div class="rating">
+                                            <span  ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[data[$index+1].rating>=1]"></span>
+                                            <span  ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[data[$index+1].rating>=2]"></span>
+                                            <span  ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[data[$index+1].rating>=3]"></span>
+                                            <span  ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[data[$index+1].rating>=4]"></span>
+                                            <span  ng-class="{true:'ion-android-star orange',false:'ion-android-star-outline'}[data[$index+1].rating==5]"></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" ng-if="!hasMore">
+                <div class="item assertive text-center">没有可加载的数据了</div>
+            </div>
+            <ion-infinite-scroll on-infinite="load()" ng-if="hasMore"> </ion-infinite-scroll>
+        </ion-content>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="right" width="200">
+        <div class="list">
+            <div class="item" ng-repeat="tmp in list" ng-click="search($index)">{{tmp}}</div>
+        </div>
+    </ion-side-menu>
+
+</ion-side-menus>
